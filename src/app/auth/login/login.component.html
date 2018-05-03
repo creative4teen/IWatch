@@ -1,0 +1,99 @@
+<div  fxLayout="column"   fxLayoutAlign="center center"   fxLayoutGap="30px">
+
+    <section>
+
+        <form   fxLayout="column"   fxLayoutAlign="center center"   fxLayoutGap="10px"
+                [formGroup]="loginForm"   (ngSubmit)="onSubmit()">
+
+            <mat-form-field>
+                <mat-select 
+                        #langSelect
+                        (change)="languageChanged(langSelect.selected.value)"
+                        (ngModelChange)="languageChanged(langSelect.selected.value)"
+                        formControlName="languageSelect">
+                    <mat-option value="en">
+                        ENGLISH
+                    </mat-option>
+                    <mat-option value="zh">
+                        中文
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+                    
+            <mat-form-field>
+                <mat-select 
+                        value = "{{sharedDataService.type}}"
+                        #churchT
+                        (change)="typeChanged(churchT.selected.value)"
+                        (ngModelChange)="typeChanged(churchT.selected.value)"
+                        formControlName="churchType" >
+                    <mat-option value="gta">
+                        大多伦多教会
+                    </mat-option>
+                    <mat-option value="org">
+                        大多教会机构
+                    </mat-option>
+                    <mat-option value="ont">
+                        安省教会
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-select 
+                        #churchSelect
+                        (change)="homeChanged(churchSelect.selected.value)"
+                        (ngModelChange)="homeChanged(churchSelect.selected.value)"
+                        formControlName="homeChurchSelect"
+                        [placeholder]="sharedDataService.homeChurch.name">
+                    <mat-option *ngFor="let church of sharedDataService.filterChurchObservable() | async" [value]="church">
+                        {{ church.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input  type="number"  matInput  placeholder="您的手机号码"  formControlName="mobile">
+                <mat-error>手机号码信息有误</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input  type="email"  matInput  placeholder="您的电邮"  formControlName="email">
+              <mat-error>电邮信息有误</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input  type="password"  matInput  placeholder="您的密码"  formControlName="password">
+              <mat-error>密码有误</mat-error>
+            </mat-form-field>
+
+            <button *ngIf="!isLoading" type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">登录</button>
+
+            <mat-spinner *ngIf="isLoading"></mat-spinner>
+        </form>
+        
+    </section>
+
+    <hr/>
+
+    <section>
+        <div fxLayoutAlign="center center" fxLayoutGap="10px">
+            <H2> {{ sharedDataService.homeChurch.name }} </H2>
+        </div>
+    </section>
+
+    <section>
+        <div fxLayoutAlign="center center" fxLayoutGap="10px">
+            <H4> {{ sharedDataService.homeChurch.description }} </H4>
+        </div>
+    </section>
+
+</div>
+
+<!-- <ol>
+  <li>Add an email and password field (with Material Components of course)</li>
+  <li>Add validation (email => required and email, password => required)</li>
+  <li>Show errors and hints</li>
+  <li>Make form submittable and disable button if invalid</li>
+  <li>BONUS: Do all of that by using the reactive approach!</li>
+</ol> -->

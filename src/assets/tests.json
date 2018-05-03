@@ -1,0 +1,122 @@
+[
+    {
+        "id": "0",
+        "parent_id": null,
+        "group": "out",
+        "time": "May 28, 2018 | 18.0-21.0",
+        "name": "布道会 | 培灵会 | 训练营 | 聚会",
+        "title": "胜过怒气-靠主得胜",
+        "text": "人有见识，就不轻易发怒，宽恕人的过失，便是自己的荣耀",
+        "description": "讲员: 牧師",
+        "medias": [
+            {
+                "name": "宣传单张",
+                "type": "picture",
+                "url": "http://rhccc.ca/wp-content/uploads/2018/04/JHT_RHCCC_Poster-1.png",
+                "id": "0"
+            }
+        ],
+        "state": "running",
+        "keywords": "",
+        "starting": "2018-04-23T17:53:39.350Z"
+    },
+    {
+        "id": "1",
+        "parent_id": null,
+        "group": "out",
+        "time": "Jun 23, 2018-Aug 12, 2018 | 9.0-16.0 | 0111110",
+        "name": "ABC教会 Camp 夏令营",
+        "title": "ABC教会 少年夏令营 Camp",
+        "text": "Jun 23, 2018-Aug 12, 2018,ABC教会 少年夏令营",
+        "description": "ABC教会 Camp 夏令营",
+        "medias": [
+            {
+                "name": "宣传单张",
+                "type": "picture",
+                "url": "http://www.logosbaptist.com/children/events/2018/KoinoniaCamp2018/LogoP.jpg",
+                "id": "0"
+            }
+        ],
+        "state": "running",
+        "keywords": "",
+        "starting": "2018-04-23T17:53:39.350Z"
+    },
+    {
+        "id": "2",
+        "parent_id": null,
+        "group": "all",
+        "time": "Mar 1, 2018- Dec 31, 2018 | 9.5-11.5 | 1000000 | 10100",
+        "name": "主日聚会-直播",
+        "title": "胜过怒气-靠主得胜",
+        "text": "人有见识，就不轻易发怒，宽恕人的过失，便是自己的荣耀",
+        "description": "ABC教会主日聚会-直播",
+        "medias": [
+            {
+                "name": "宣传单张",
+                "type": "picture",
+                "url": "http://iwatch.creativeteen.org/uploads/live.png",
+                "id": "0"
+            },
+            {
+                "name": "直播地址",
+                "type": "live",
+                "url": "https://www.youtube.com/channel/UCZ3OTLjxo8c5HOnMWoDddNQ/live",
+                "id": "1"
+            },
+            {
+                "name": "讲章资料",
+                "type": "doc",
+                "url": "http://iwatch.creativeteen.org/uploads/2018.pdf",
+                "id": "2"
+            },
+            {
+                "name": "会议链接",
+                "type": "meet",
+                "url": "https://hangouts.google.com/call/BlsVykB0OmYkhjVbl9ybAAEE",
+                "id": "3"
+            }
+        ],
+        "state": "running",
+        "keywords": "",
+        "starting": "2018-04-23T17:53:39.350Z"
+    },
+    {
+        "id": "3",
+        "parent_id": null,
+        "group": "out",
+        "time": "Mar 1, 2018- Dec 31, 2018 | 20.5-22 | 1000000",
+        "name": "布道会 | 培灵会 | 训练营 | 聚会 -网络直播",
+        "title": "胜过怒气-靠主得胜",
+        "text": "人有见识，就不轻易发怒，宽恕人的过失，便是自己的荣耀",
+        "description": "讲员: 牧師",
+        "medias": [
+            {
+                "name": "宣传单张",
+                "type": "picture",
+                "url": "http://iwatch.creativeteen.org/uploads/live.png",
+                "id": "0"
+            },
+            {
+                "name": "直播地址",
+                "type": "live",
+                "url": "https://www.youtube.com/channel/UCZ3OTLjxo8c5HOnMWoDddNQ/live",
+                "id": "1"
+            },
+            {
+                "name": "会议链接",
+                "type": "meet",
+                "url": "https://hangouts.google.com/call/BlsVykB0OmYkhjVbl9ybAAEE",
+                "id": "2"
+            },
+            {
+                "name": "讲章资料",
+                "type": "doc",
+                "url": "http://iwatch.creativeteen.org/uploads/2018.pdf",
+                "id": "3"
+            }
+        ],
+        "state": "running",
+        "keywords": "",
+        "starting": "2018-04-23T17:53:39.350Z"
+    }
+]

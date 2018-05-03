@@ -1,0 +1,181 @@
+<mat-toolbar color="primary">
+    <span fxLayout="row" fxFlex="200" fxLayoutAlign="start">
+        <button mat-raised-button color="primary" (click)="onLogout()">退出</button>
+    </span>
+    <span fxLayout="row" fxFlex="200" fxLayoutAlign="end">
+        <a routerLink="/login"><img src="assets/image/wservant.png" width="160"/></a>
+    </span>
+</mat-toolbar>
+
+
+<mat-tab-group>
+    <mat-tab label="选择教会当前活动">
+
+        <section class="start-activity" fxLayout fxLayoutAlign="center">
+                <form (ngSubmit)="selectActivity(f)" #f="ngForm">
+                    <mat-card fxFlex.xs="100%" fxFlex="400px">
+                        <mat-card-title fxLayoutAlign="center">选择一教会当前活动</mat-card-title>
+                        <mat-card-content fxLayoutAlign="center">
+                            <mat-form-field>
+                                <mat-select placeholder="选择教会当前活动"  ngModel name="activityid" required>
+                                    <mat-option *ngFor="let activity of shareDataService.filterActivityObservable('all','running') | async" [value]="activity.id">
+                                        {{ activity.name + " : " + (activity.starting | date:shortDate) }} 
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-card-content>
+                        <mat-card-actions fxLayoutAlign="center">
+                            <button type="submit" mat-button [disabled]="f.invalid">选择教会当前活动</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </form>
+        </section>
+
+    </mat-tab>
+</mat-tab-group>
+
+
+<hr/>
+
+<mat-tab-group>
+    <mat-tab label="选择教会历史活动">
+
+        <section class="start-activity" fxLayout fxLayoutAlign="center">
+                <form (ngSubmit)="selectActivity(f2)" #f2="ngForm">
+                    <mat-card fxFlex.xs="100%" fxFlex="400px">
+                        <mat-card-title fxLayoutAlign="center">选择一教会历史活动</mat-card-title>
+                        <mat-card-content fxLayoutAlign="center">
+                            <mat-form-field>
+                                <mat-select placeholder="选择教会历史活动"  ngModel name="activityid" required>
+                                    <mat-option *ngFor="let activity of shareDataService.filterActivityObservable('all','done') | async" [value]="activity.id">
+                                        {{ activity.name + " : " + (activity.starting | date:shortDate) }} 
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-card-content>
+                        <mat-card-actions fxLayoutAlign="center">
+                            <button type="submit" mat-button [disabled]="f2.invalid">选择教会历史活动</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </form>
+        </section>
+
+    </mat-tab>
+</mat-tab-group>
+
+
+<hr/>
+
+
+<mat-tab-group>
+    <mat-tab label="从模板创建新教会活动">
+
+        <section fxLayout fxLayoutAlign="center">
+                <form (ngSubmit)="createActivityFromTemplate(ff)" #ff="ngForm">
+                    <mat-card fxFlex.xs="100%" fxFlex="400px">
+                        <mat-card-title fxLayoutAlign="center">选择一活动模板</mat-card-title>
+                        <mat-card-content fxLayoutAlign="center">
+                            <mat-form-field>
+                                <mat-select placeholder="选择教会活动模板"  ngModel name="templateid" required>
+                                    <mat-option *ngFor="let template of shareDataService.filterTemplateObservable('all') | async" [value]="template.id">
+                                        {{ template.name }} 
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-card-content>
+                        <mat-card-actions fxLayoutAlign="center">
+                            <button type="submit" mat-button [disabled]="ff.invalid">创建新教会活动</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </form>
+        </section>
+
+    </mat-tab>
+</mat-tab-group>
+
+
+<hr/>
+
+
+<div>
+    <form fxLayout="column" fxLayoutAlign="center"  #updateForm="ngForm">
+        <mat-form-field *ngIf="shareDataService.runningActivity">
+            <mat-label>活动名称</mat-label>
+            <input matInput [(ngModel)]="shareDataService.runningActivity.title" name="title" required>
+            <mat-error>请输入活动名称</mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="shareDataService.runningActivity">
+            <mat-label>活动简介</mat-label>
+            <input matInput [(ngModel)]="shareDataService.runningActivity.text" name="text" required>
+            <mat-error>请输入活动简介</mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="shareDataService.runningActivity">
+            <mat-label>活动圣经关键字</mat-label>
+            <input matInput [(ngModel)]="shareDataService.runningActivity.keywords" name="keywords" required>
+            <mat-error>请输入圣经关键字</mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="shareDataService.runningActivity">
+            <mat-label>活动开始时间</mat-label>
+            <input matInput [matDatepicker]="minDatePicker" [(ngModel)]="shareDataService.runningActivity.starting" name="starting" required>
+            <mat-datepicker-toggle matSuffix [for]="minDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #minDatePicker [touchUi]="touch"></mat-datepicker>
+            <mat-error>请输入活动开始时间</mat-error>
+        </mat-form-field>
+
+        <div *ngIf="shareDataService.runningActivity">
+            <div *ngFor="let med of shareDataService.runningActivity.mediaArray">
+                <mat-form-field  style="width:100px !important;">
+                    <mat-label>MEDIA TYPE</mat-label>
+                    <mat-select  [(ngModel)]="med.type"  [name]="med.type+med.name+'type'" required>
+                        <mat-option value="picture">
+                            图片
+                        </mat-option>
+                        <mat-option value="mp4">
+                            MP4
+                        </mat-option>
+                        <mat-option value="mp3">
+                            MP3
+                        </mat-option>
+                        <mat-option value="doc">
+                            文档
+                        </mat-option>
+                        <mat-option value="meet">
+                            会议
+                        </mat-option>
+                        <mat-option value="live">
+                            直播
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field  style="width:100px !important;">
+                    <mat-label>MEDIA NAME</mat-label>
+                    <input matInput [(ngModel)]="med.name"  [name]="med.type+med.name+'name'" required>
+                </mat-form-field>        
+                <mat-form-field  style="width:600px !important;">
+                    <mat-label>MEDIA URL</mat-label>
+                    <input matInput [(ngModel)]="med.url"  [name]="med.type+med.name+'url'" required>
+                </mat-form-field>        
+                <input name="file" type="file" (change)="onFileChange($event, med)" style="width:200px !important;"/>
+                <button  mat-raised-button  color="primary"  (click)="removeMedia(med)">删除</button>    
+            </div>
+        </div>
+    </form>
+
+    <button   mat-raised-button   color="primary"   (click)="updateActivity(updateForm)">更新</button>    
+    <button   mat-raised-button   color="primary"   (click)="addMedia(updateForm)">增加媒体</button>    
+    
+    <hr/>
+
+    <div *ngIf="shareDataService.runningActivity">
+        <div *ngFor="let med2 of shareDataService.runningActivity.medias">
+            <h3 *ngIf="med2.uploadResult">
+                {{ med2.uploadResult }}
+            </h3>
+            <hr/>
+        </div>
+    </div>
+    
+</div>
